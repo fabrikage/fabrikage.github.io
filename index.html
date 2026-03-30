@@ -1,218 +1,194 @@
 <!DOCTYPE html>
-<html lang=" en-US">
+<html lang="nl">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <!-- Begin Jekyll SEO tag v2.8.0 -->
-    <title>Fabrikage</title>
-    <meta name="generator" content="Jekyll v4.3.2" />
-    <meta property="og:title" content="Fabrikage" />
-    <meta property="og:locale" content="en_US" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fabrikage — AI-advies & systeemontwerp</title>
     <meta
       name="description"
-      content="PHP webdevelopment based in The Netherlands"
+      content="AI-advies en systeemontwerp. Bart Klein Reesink helpt organisaties slimmer bouwen."
     />
-    <meta
-      property="og:description"
-      content="PHP webdevelopment based in The Netherlands"
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/img/safari-pinned-tab.svg"
     />
-    <link rel="canonical" href="https://fabrikage.nl/" />
-    <meta property="og:url" content="https://fabrikage.nl/" />
-    <meta property="og:site_name" content="Fabrikage" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <meta property="twitter:title" content="Fabrikage" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "description": "PHP webdevelopment based in The Netherlands",
-        "headline": "Fabrikage",
-        "name": "Fabrikage",
-        "url": "https://fabrikage.nl/"
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    </script>
-    <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/main.css" />
+      :root {
+        --bg: #f7f6f2;
+        --text: #1a1a1a;
+        --muted: #888;
+        --logo: url("assets/img/logo.svg");
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --text: #f0ece4;
+          --muted: #666;
+          --logo: url("assets/img/logo-alt.svg");
+        }
+      }
+
+      [data-theme="light"] {
+        --bg: #f7f6f2;
+        --text: #1a1a1a;
+        --muted: #888;
+        --logo: url("assets/img/logo.svg");
+      }
+
+      [data-theme="dark"] {
+        --bg: #111;
+        --text: #f0ece4;
+        --muted: #666;
+        --logo: url("assets/img/logo-alt.svg");
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 40px 24px;
+      }
+
+      .logo {
+        width: 280px;
+        height: auto;
+        background-image: var(--logo);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        aspect-ratio: 381.615 / 148.502;
+        margin-bottom: 40px;
+      }
+
+      .tagline {
+        font-size: clamp(17px, 2.5vw, 22px);
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        text-align: center;
+        max-width: 480px;
+        line-height: 1.45;
+        margin-bottom: 28px;
+      }
+
+      .services {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 48px;
+      }
+
+      .services span.dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--muted);
+      }
+
+      .contact {
+        font-size: 15px;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+      }
+
+      .contact:hover {
+        color: var(--text);
+        border-bottom-color: var(--text);
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 18px;
+        padding: 8px;
+        border-radius: 8px;
+        transition: color 0.15s;
+        line-height: 1;
+      }
+
+      .theme-toggle:hover {
+        color: var(--text);
+      }
+    </style>
   </head>
+  <body>
+    <button
+      class="theme-toggle"
+      id="toggle"
+      title="Thema wisselen"
+      aria-label="Thema wisselen"
+    ></button>
 
-  <body
-    class="font-mono text-gray-500 dark:text-gray-200 bg-gray-50 dark:bg-zinc-800"
-  >
-    <a href="/" class="block mx-auto my-16 w-max">
-      <span class="sr-only">home</span>
-      <picture>
-        <source
-          srcset="/assets/img/logo-alt.svg"
-          media="(prefers-color-scheme: dark)"
-        />
-        <img
-          src="/assets/img/logo.svg"
-          alt="Fabrikage logo"
-          class="mx-auto mb-10 w-60"
-        />
-      </picture>
-    </a>
-    <header class="mt-8 mb-24">
-      <a
-        href="https://github.com/bartkleinreesink"
-        target="_blank"
-        class="relative inline-flex items-center justify-center w-auto gap-5 p-3 mx-auto text-left transition-all duration-75 -translate-x-1/2 rounded left-1/2 hover:bg-zinc-900"
-      >
-        <img
-          class="w-10 h-10 rounded"
-          src="https://avatars.githubusercontent.com/u/28318911"
-          alt="Default avatar"
-        />
-        <h1 class="text-sm tracking-widest">
-          <span class="block">BART KLEIN REESINK</span>
-          <span class="block font-bold">php developer</span>
-        </h1>
-      </a>
-      <!-- <h1 class="text-4xl font-bold text-center"> </h1>
-            <p class="text-center"> </p> -->
-    </header>
-    <main class="max-w-screen-sm px-8 mx-auto font-mono">
-      <h3 class="mb-6 font-bold text-center">THINGS I'VE MADE</h3>
-      <div class="flex flex-col gap-5 cards">
-        <a
-          href="https://github.com/fabrikage/acf-builder-parser"
-          target="_blank"
-          class="relative flex max-w-md p-6 mx-auto mt-0 transition-all duration-75 ease-linear bg-white border rounded-lg shadow hover:-mt-[2px] hover:mb-[2px] group border-zinc-200 hover:bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700"
-        >
-          <p class="font-normal text-zinc-700 dark:text-zinc-400">
-            <strong>🔄 acf-builder-parser</strong> - a parser that converts
-            advanced custom fields json to acf builder php code
-          </p>
-          <!-- 
-    <span class="block mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-        
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">composer require fabrikage/acf-builder-parser</code></pre></figure>
+    <div class="logo" role="img" aria-label="Fabrikage logo"></div>
 
-    </span>
-     -->
-        </a>
+    <p class="tagline">Slimme systemen beginnen met de juiste vragen.</p>
 
-        <a
-          href="https://github.com/fabrikage/git-updater-test-plugin"
-          target="_blank"
-          class="relative flex max-w-md p-6 mx-auto mt-0 transition-all duration-75 ease-linear bg-white border rounded-lg shadow hover:-mt-[2px] hover:mb-[2px] group border-zinc-200 hover:bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700"
-        >
-          <p class="font-normal text-zinc-700 dark:text-zinc-400">
-            <strong>🆕 git-updater-test-plugin</strong> - a wordpress plugin to
-            demonstrate how to intercept the default wordpress plugin update
-            system
-          </p>
-          <!-- 
-    <span class="block mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-        
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">composer require fabrikage/git-updater-test-plugin</code></pre></figure>
+    <div class="services">
+      <span>AI-advies</span>
+      <span class="dot"></span>
+      <span>Systeemontwerp</span>
+    </div>
 
-    </span>
-     -->
-        </a>
+    <a class="contact" href="mailto:bart@fabrikage.nl">bart@fabrikage.nl</a>
 
-        <a
-          href="https://github.com/fabrikage/qr-codes"
-          target="_blank"
-          class="relative flex max-w-md p-6 mx-auto mt-0 transition-all duration-75 ease-linear bg-white border rounded-lg shadow hover:-mt-[2px] hover:mb-[2px] group border-zinc-200 hover:bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700"
-        >
-          <p class="font-normal text-zinc-700 dark:text-zinc-400">
-            <strong>*️⃣ qr-codes</strong> - a wordpress plugin to generate qr
-            codes
-          </p>
-          <!-- 
-    <span class="block mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-        
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">composer require fabrikage/qr-codes</code></pre></figure>
+    <script>
+      const btn = document.getElementById("toggle");
+      const root = document.documentElement;
+      const sys = window.matchMedia("(prefers-color-scheme: dark)");
 
-    </span>
-     -->
-        </a>
+      let pref = localStorage.getItem("theme") || "system";
 
-        <a
-          href="https://github.com/fabrikage/requirements"
-          target="_blank"
-          class="relative flex max-w-md p-6 mx-auto mt-0 transition-all duration-75 ease-linear bg-white border rounded-lg shadow hover:-mt-[2px] hover:mb-[2px] group border-zinc-200 hover:bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700"
-        >
-          <p class="font-normal text-zinc-700 dark:text-zinc-400">
-            <strong>✅ requirements</strong> - a simple php library to check if
-            your server meets the requirements for your application
-          </p>
-          <!-- 
-    <span class="block mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-        
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">composer require fabrikage/requirements</code></pre></figure>
+      function resolved() {
+        return pref === "system" ? (sys.matches ? "dark" : "light") : pref;
+      }
 
-    </span>
-     -->
-        </a>
+      function apply() {
+        const r = resolved();
+        root.setAttribute("data-theme", r);
+        btn.textContent = r === "dark" ? "☀" : "☾";
+      }
 
-        <a
-          href="https://github.com/fabrikage/wp-env-switcher"
-          target="_blank"
-          class="relative flex max-w-md p-6 mx-auto mt-0 transition-all duration-75 ease-linear bg-white border rounded-lg shadow hover:-mt-[2px] hover:mb-[2px] group border-zinc-200 hover:bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700"
-        >
-          <p class="font-normal text-zinc-700 dark:text-zinc-400">
-            <strong>🔀 wp-env-switcher</strong> - adds a menu item in your
-            wordpress admin bar in which you can switch between environments
-          </p>
-          <!-- 
-    <span class="block mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-        
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">composer require fabrikage/wp-env-switcher</code></pre></figure>
+      btn.addEventListener("click", () => {
+        const r = resolved();
+        pref = r === "dark" ? "light" : "dark";
+        localStorage.setItem("theme", pref);
+        apply();
+      });
 
-    </span>
-     -->
-        </a>
-      </div>
-    </main>
+      sys.addEventListener("change", apply);
+      apply();
+    </script>
   </body>
-  <footer class="mt-24 mb-8 text-center">
-    <nav class="inline-block mx-auto">
-      <div
-        class="flex-wrap items-center justify-center block gap-1 text-sm sm:flex"
-      >
-        <div class="flex items-center justify-center">
-          <span>need to build something?</span>
-          <a
-            href="mailto:bart@fabrikage.nl?subject=Are%20you%20available%20for%20freelance%20work%3F&amp;body=Who%20are%20you%2C%20and%20how%20can%20I%20find%20you%20online%20(your%20website%2C%20LinkedIn%2C%20Twitter%2C%20etc)%3F%0D%0A%0D%0A%F0%9F%91%89%0D%0A%0D%0AWhat%20kind%20of%20software%20are%20you%20looking%20to%20build%3F%0D%0A%0D%0A%F0%9F%91%89%0D%0A%0D%0AWhere%20are%20you%20located%3F%0D%0A%0D%0A%F0%9F%91%89%0D%0A%0D%0AAnything%20else%20you'd%20like%20to%20share%3F%0D%0A%0D%0A%F0%9F%91%89"
-            class="px-2 py-1 text-gray-900 underline dark:text-neutral-100"
-            target="_blank"
-            data-splitbee-event="Click hire button"
-            >hire me</a
-          >
-          💡
-        </div>
-      </div>
-    </nav>
-    <div class="flex items-center justify-center mt-10">
-      <a
-        href="https://github.com/fabrikage/fabrikage.github.io"
-        target="_blank"
-        class="opacity-20 hover:opacity-30"
-        >view source</a
-      >
-    </div>
-    <div class="flex items-center justify-center mt-5">
-      <a
-        href="https://github.com/fabrikage"
-        target="_blank"
-        class="opacity-20 hover:opacity-30"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path
-            class="dark:fill-white fill-zinc-900"
-            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-          />
-        </svg>
-      </a>
-    </div>
-  </footer>
 </html>
