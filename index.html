@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabrikage — AI-advies & systeemontwerp</title>
+  <meta name="description" content="AI-advies en systeemontwerp. Bart Klein Reesink helpt organisaties slimmer bouwen.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/safari-pinned-tab.svg">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f7f6f2;
+      --text: #1a1a1a;
+      --muted: #888;
+      --logo: url('assets/img/logo.svg');
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111;
+        --text: #f0ece4;
+        --muted: #666;
+        --logo: url('assets/img/logo-alt.svg');
+      }
+    }
+
+    [data-theme="light"] {
+      --bg: #f7f6f2;
+      --text: #1a1a1a;
+      --muted: #888;
+      --logo: url('assets/img/logo.svg');
+    }
+
+    [data-theme="dark"] {
+      --bg: #111;
+      --text: #f0ece4;
+      --muted: #666;
+      --logo: url('assets/img/logo-alt.svg');
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    .logo {
+      width: 280px;
+      height: auto;
+      background-image: var(--logo);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      aspect-ratio: 381.615 / 148.502;
+      margin-bottom: 40px;
+    }
+
+    .tagline {
+      font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      text-align: center;
+      max-width: 480px;
+      line-height: 1.45;
+      margin-bottom: 28px;
+    }
+
+    .services {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .services span.dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    .contact {
+      font-size: 15px;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .contact:hover {
+      color: var(--text);
+      border-bottom-color: var(--text);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 18px;
+      padding: 8px;
+      border-radius: 8px;
+      transition: color 0.15s;
+      line-height: 1;
+    }
+
+    .theme-toggle:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="toggle" title="Thema wisselen" aria-label="Thema wisselen"></button>
+
+  <div class="logo" role="img" aria-label="Fabrikage logo"></div>
+
+  <p class="tagline">Slimme systemen beginnen met de juiste vragen.</p>
+
+  <div class="services">
+    <span>AI-advies</span>
+    <span class="dot"></span>
+    <span>Systeemontwerp</span>
+  </div>
+
+  <a class="contact" href="mailto:bart@fabrikage.nl">bart@fabrikage.nl</a>
+
+  <script>
+    const btn = document.getElementById('toggle');
+    const root = document.documentElement;
+    const sys = window.matchMedia('(prefers-color-scheme: dark)');
+
+    let pref = localStorage.getItem('theme') || 'system';
+
+    function resolved() {
+      return pref === 'system' ? (sys.matches ? 'dark' : 'light') : pref;
+    }
+
+    function apply() {
+      const r = resolved();
+      root.setAttribute('data-theme', r);
+      btn.textContent = r === 'dark' ? '☀' : '☾';
+    }
+
+    btn.addEventListener('click', () => {
+      const r = resolved();
+      pref = r === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', pref);
+      apply();
+    });
+
+    sys.addEventListener('change', apply);
+    apply();
+  </script>
+</body>
+</html>
